@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}{% if page.tagline %} | {{ page.tagline }}{% endif %}</title>
+  <meta name="description" content="{{ page.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="{{ '/' | relative_url }}"><span class="logo-mark">&gt;_</span>{{ page.title }}</a>
+      {% if page.cta_url %}<a class="btn btn-small" href="{{ page.cta_url }}">{{ page.cta_label }}</a>{% endif %}
+    </div>
+  </header>
+
+  {% if page.notice %}
+  <div class="notice"><div class="wrap"><span class="notice-dot"></span>{{ page.notice }}</div></div>
+  {% endif %}
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-prompt"><span>$</span> welcome --new-students<span class="cursor"></span></p>
+      <h1>{{ page.title }}</h1>
+      <p class="hero-tagline">{{ page.tagline }}</p>
+      {% if page.lead %}<p class="hero-lead">{{ page.lead }}</p>{% endif %}
+      <div class="hero-actions">
+        {% if page.cta_url %}<a class="btn" href="{{ page.cta_url }}">{{ page.cta_label }}</a>{% endif %}
+        <a class="btn btn-ghost" href="#about">くわしく見る</a>
+      </div>
+      {% if page.stats %}
+      <dl class="stats">
+        {% for s in page.stats %}
+        <div class="stat"><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>
+        {% endfor %}
+      </dl>
+      {% endif %}
+    </div>
+  </section>
+
+  <nav class="toc" aria-label="ページ内リンク"><div class="wrap" id="toc"></div></nav>
+
+  <main class="wrap content" id="content">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="logo-mark">&gt;_</span> {{ page.title }}
+    </div>
+  </footer>
+
+  <script>
+    // 見出し（##）ごとにセクションを区切り、ページ内リンクを自動で作る
+    (function () {
+      var main = document.getElementById('content');
+      var toc = document.getElementById('toc');
+      var nodes = Array.prototype.slice.call(main.childNodes);
+      var current = null;
+      nodes.forEach(function (n) {
+        if (n.nodeType === 1 && n.tagName === 'H2') {
+          current = document.createElement('section');
+          current.className = 'block' + (n.id ? ' block-' + n.id : '');
+          main.insertBefore(current, n);
+          if (n.id && toc) {
+            var a = document.createElement('a');
+            a.href = '#' + n.id;
+            a.textContent = n.textContent;
+            toc.appendChild(a);
+          }
+        }
+        if (current) current.appendChild(n);
+      });
+    })();
+  </script>
+</body>
+</html>

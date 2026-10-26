@@ -1,0 +1,5 @@
+title: マイコン部
+lang: ja
+markdown: kramdown
+exclude:
+  - README.md
