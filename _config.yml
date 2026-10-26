@@ -35,7 +35,7 @@ nav:
     title: お知らせ
     label: News
     url: /news/
-    desc: 活動報告やイベントの告知など、最新の情報をお届けします。
+    desc: 活動報告など、マイコン部の最新情報をお届けします。
   - id: join
     title: 入部案内
     label: Join us

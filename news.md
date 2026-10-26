@@ -4,7 +4,7 @@ title: お知らせ
 label: News
 nav: news
 permalink: /news/
-lead: 活動報告やイベントの告知など、マイコン部の最新情報です。
+lead: 活動報告など、マイコン部の最新情報です。
 ---
 
 <div class="news-list">

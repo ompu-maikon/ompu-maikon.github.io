@@ -27,12 +27,12 @@ GitHub Pages（Jekyll）で公開しています。ファイルを編集してCo
 
 `_posts` フォルダに、`年-月-日-英単語.md` という名前でファイルを作ります。
 
-例：`_posts/2027-04-10-shinkan.md`
+例：`_posts/2027-04-10-report.md`
 
 ```
 ---
-title: 新歓体験会を開催します
-category: イベント
+title: 4月の活動報告
+category: 活動報告
 ---
 
 ここに本文を書きます。
