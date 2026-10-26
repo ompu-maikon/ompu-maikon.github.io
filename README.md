@@ -1,4 +1,4 @@
-# OMPUマイコン部 公式サイト
+# OMPUマイコン部 ホームページ
 
 https://ompu-maikon.github.io
 
