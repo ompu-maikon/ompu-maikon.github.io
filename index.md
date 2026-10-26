@@ -10,7 +10,7 @@ terminal:
   - cmd: welcome --new-students
   - out: "Loading OMPU Maikon Club..."
   - out: "✓ プログラミング   Python / Web"
-  - out: "✓ 資格取得        Pythonエンジニア認定 / 基本情報"
+  - out: "✓ 資格取得        エンジニア認定 / 基本情報"
   - out: "✓ 作品づくり      動画制作 / Webサイト"
   - out: "→ 初心者歓迎。まずは見学から。"
   - cmd: cd ./join
