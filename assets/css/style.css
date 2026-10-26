@@ -253,14 +253,16 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
 
 /* カード（全項目が **太字** で始まる箇条書き） */
 .prose ul.cards {
-  list-style: none; padding: 0; display: grid; gap: 1px; background: var(--line);
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  list-style: none; padding: 0; display: grid; gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
 }
 .prose ul.cards li {
   margin: 0; background: var(--bg); padding: 30px 28px; color: var(--sub); font-size: 15px; position: relative;
-  transition: background .3s;
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  transition: background .3s, border-color .3s, transform .3s var(--ease);
 }
+/* 奇数個のときは、最後のカードを横いっぱいに */
+.prose ul.cards li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .prose ul.cards li::before {
   content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 0; background: var(--accent); transition: width .5s var(--ease);
 }
@@ -419,6 +421,8 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
   .footer-bottom { flex-direction: column; gap: 8px; }
 }
 
+@media (max-width: 760px) { .prose ul.cards { grid-template-columns: 1fr; gap: 12px; } }
+
 /* ===== スマホ：トップページをすっきり見せる ===== */
 @media (max-width: 760px) {
   .hero-grid { padding-top: 44px; padding-bottom: 48px; gap: 32px; }
@@ -573,7 +577,7 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
 }
 
 /* これまでの実績（## 見出しの {#results}）は縦に1列で並べる */
-.sec-results ul.cards { grid-template-columns: 1fr; max-width: 760px; }
+.sec-results ul.cards { grid-template-columns: 1fr; max-width: 760px; gap: 10px; }
 .sec-results ul.cards li { padding: 22px 28px; display: flex; align-items: center; gap: 14px; }
 .sec-results ul.cards li::after {
   content: "✓"; order: -1; flex: none; width: 26px; height: 26px; border-radius: 50%;
