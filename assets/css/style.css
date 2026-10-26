@@ -268,6 +268,18 @@ img { max-width: 100%; height: auto; border-radius: var(--radius); }
 .prose ul.cards li:hover::before { width: 100%; }
 .prose ul.cards li strong { display: block; color: var(--ink); font-size: 18px; margin-bottom: 8px; }
 
+/* リンク付きカード（- **[名前](URL)** 説明） */
+.prose ul.cards li.is-link { cursor: pointer; padding-right: 56px; }
+.prose ul.cards li.is-link strong a { color: var(--ink); text-decoration: none; }
+.prose ul.cards li.is-link strong a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.prose ul.cards li.is-link::after {
+  content: "↗"; position: absolute; top: 28px; right: 26px; width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--line); display: grid; place-items: center; font-size: 14px; color: var(--ink);
+  transition: background .25s, color .25s, border-color .25s, transform .3s var(--ease);
+}
+.prose ul.cards li.is-link:hover::after { background: var(--ink); color: #fff; border-color: var(--ink); transform: translate(2px, -2px); }
+.prose ul.cards li.is-link:hover strong a { color: var(--accent); }
+
 /* ステップ（全項目が **太字** で始まる番号付きリスト） */
 .prose ol.steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; counter-reset: step; }
 .prose ol.steps li {
