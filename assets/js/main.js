@@ -34,6 +34,10 @@
         return f && f.nodeType === 1 && f.tagName === 'STRONG';
       });
       if (all) list.classList.add(list.tagName === 'OL' ? 'steps' : 'cards');
+      // 太字の中にリンクがあるカードは、カード全体を押せるようにする
+      if (all) Array.prototype.forEach.call(items, function (li) {
+        if (li.querySelector('strong a')) li.classList.add('is-link');
+      });
     });
 
     // よくある質問：### を開閉式にする
