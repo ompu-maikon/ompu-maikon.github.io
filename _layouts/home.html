@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<section class="hero{% if page.hero_image %} has-photo{% endif %}">
+  {% if page.hero_image %}<div class="hero-photo" aria-hidden="true" style="background-image: url('{{ page.hero_image | relative_url }}')"></div>{% endif %}
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow"><span class="type" id="type">{{ page.eyebrow }}</span></p>
+      <h1 class="hero-title">{{ page.headline }}</h1>
+      <p class="hero-lead">{{ page.lead }}</p>
+    </div>
+
+    <div class="terminal" aria-label="ターミナル風の紹介">
+      <div class="term-bar"><i></i><i></i><i></i><span>~/ompu-maikon — zsh</span></div>
+      <div class="term-body" id="term">
+        {% for l in page.terminal %}
+        {% if l.cmd %}<p class="tl cmd"><span class="ps">$</span> <span class="t">{{ l.cmd }}</span></p>
+        {% else %}<p class="tl out">{{ l.out }}</p>{% endif %}
+        {% endfor %}
+        <p class="tl cmd last"><span class="ps">$</span> <span class="cursor"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="contents">
+  <div class="wrap">
+    <div class="nav-cards">
+      {% for item in site.nav %}
+      <a class="nav-card reveal" href="{{ item.url | relative_url }}">
+        <span class="nc-top"><span class="nc-num">0{{ forloop.index }}</span><span class="nc-label">{{ item.label }}</span></span>
+        <span class="nc-title">{{ item.title }}</span>
+        <span class="nc-desc">{{ item.desc }}</span>
+        <span class="nc-more">View more <span class="arrow">→</span></span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+

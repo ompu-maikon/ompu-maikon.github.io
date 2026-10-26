@@ -1,5 +1,43 @@
-title: マイコン部
+# ===== サイト全体の設定 =====
+title: OMPUマイコン部
+description: OMPUマイコン部の紹介サイトです。プログラミングやIT系資格の勉強をしています。初心者歓迎。
 lang: ja
 markdown: kramdown
+
+# お知らせ記事のURLの形
+permalink: /news/:year/:month/:day/:title/
+
 exclude:
   - README.md
+
+# お知らせ記事（_postsフォルダ）の共通設定
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: post
+      nav: news
+
+# ===== メニュー =====
+# ページを増やしたら、ここに1つ追加するとメニューとトップページに表示されます
+nav:
+  - id: about
+    title: マイコン部について
+    label: About
+    url: /about/
+    desc: どんなクラブか、活動日や場所、これまでの実績を紹介します。
+  - id: activities
+    title: 活動内容
+    label: Activities
+    url: /activities/
+    desc: 勉強会や資格対策、作品づくりなど、普段の活動と1年間の流れ。
+  - id: news
+    title: お知らせ
+    label: News
+    url: /news/
+    desc: 活動報告やイベントの告知など、最新の情報をお届けします。
+  - id: join
+    title: 入部案内
+    label: Join us
+    url: /join/
+    desc: 入部までの流れ、先輩の声、よくある質問とお問い合わせ。

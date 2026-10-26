@@ -3,79 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }}{% if page.tagline %} | {{ page.tagline }}{% endif %}</title>
-  <meta name="description" content="{{ page.description }}">
+  <title>{% if page.title and page.layout != 'home' %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.lead %}{{ page.lead }}{% else %}{{ site.description }}{% endif %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
-  <header class="site-header">
+<body{% if page.hero_image %} class="has-hero-photo"{% endif %}>
+  <header class="site-header" id="top">
     <div class="wrap header-inner">
-      <a class="logo" href="{{ '/' | relative_url }}"><span class="logo-mark">&gt;_</span>{{ page.title }}</a>
-      {% if page.cta_url %}<a class="btn btn-small" href="{{ page.cta_url }}">{{ page.cta_label }}</a>{% endif %}
+      <a class="logo" href="{{ '/' | relative_url }}"><svg class="logo-svg" viewBox="0 0 32 32" aria-hidden="true"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 2v4M16 2v4M21 2v4M11 26v4M16 26v4M21 26v4M2 11h4M2 16h4M2 21h4M26 11h4M26 16h4M26 21h4"/></g><rect x="6" y="6" width="20" height="20" rx="4.5" fill="currentColor"/><path d="M11.5 20.5v-9l4.5 5 4.5-5v9" fill="none" stroke="var(--term)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ site.title }}</span></a>
+      <button class="menu-btn" id="menu-btn" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
+      <nav class="global-nav" id="global-nav" aria-label="メインメニュー">
+        {% for item in site.nav %}
+        <a href="{{ item.url | relative_url }}"{% if page.nav == item.id %} class="is-active"{% endif %}>
+          <span class="gn-label">{{ item.label }}</span><span class="gn-title">{{ item.title }}</span>
+        </a>
+        {% endfor %}
+      </nav>
     </div>
   </header>
 
-  {% if page.notice %}
-  <div class="notice"><div class="wrap"><span class="notice-dot"></span>{{ page.notice }}</div></div>
-  {% endif %}
-
-  <section class="hero">
-    <div class="wrap">
-      <p class="hero-prompt"><span>$</span> welcome --new-students<span class="cursor"></span></p>
-      <h1>{{ page.title }}</h1>
-      <p class="hero-tagline">{{ page.tagline }}</p>
-      {% if page.lead %}<p class="hero-lead">{{ page.lead }}</p>{% endif %}
-      <div class="hero-actions">
-        {% if page.cta_url %}<a class="btn" href="{{ page.cta_url }}">{{ page.cta_label }}</a>{% endif %}
-        <a class="btn btn-ghost" href="#about">くわしく見る</a>
-      </div>
-      {% if page.stats %}
-      <dl class="stats">
-        {% for s in page.stats %}
-        <div class="stat"><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>
-        {% endfor %}
-      </dl>
-      {% endif %}
-    </div>
-  </section>
-
-  <nav class="toc" aria-label="ページ内リンク"><div class="wrap" id="toc"></div></nav>
-
-  <main class="wrap content" id="content">
+  <main>
     {{ content }}
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <span class="logo-mark">&gt;_</span> {{ page.title }}
+    <div class="wrap footer-inner">
+      <div>
+        <a class="logo" href="{{ '/' | relative_url }}"><svg class="logo-svg" viewBox="0 0 32 32" aria-hidden="true"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 2v4M16 2v4M21 2v4M11 26v4M16 26v4M21 26v4M2 11h4M2 16h4M2 21h4M26 11h4M26 16h4M26 21h4"/></g><rect x="6" y="6" width="20" height="20" rx="4.5" fill="currentColor"/><path d="M11.5 20.5v-9l4.5 5 4.5-5v9" fill="none" stroke="var(--term)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{ site.title }}</span></a>
+        <p class="footer-desc">{{ site.description }}</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターメニュー">
+        {% for item in site.nav %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% endfor %}
+      </nav>
     </div>
+    <div class="wrap footer-bottom"><span>&copy; {{ site.title }}</span><a href="#top">Page top ↑</a></div>
   </footer>
 
-  <script>
-    // 見出し（##）ごとにセクションを区切り、ページ内リンクを自動で作る
-    (function () {
-      var main = document.getElementById('content');
-      var toc = document.getElementById('toc');
-      var nodes = Array.prototype.slice.call(main.childNodes);
-      var current = null;
-      nodes.forEach(function (n) {
-        if (n.nodeType === 1 && n.tagName === 'H2') {
-          current = document.createElement('section');
-          current.className = 'block' + (n.id ? ' block-' + n.id : '');
-          main.insertBefore(current, n);
-          if (n.id && toc) {
-            var a = document.createElement('a');
-            a.href = '#' + n.id;
-            a.textContent = n.textContent;
-            toc.appendChild(a);
-          }
-        }
-        if (current) current.appendChild(n);
-      });
-    })();
-  </script>
+  {% if page.nav != 'join' %}
+  <a class="sticky-cta" id="sticky-cta" href="{{ '/join/' | relative_url }}"><span>入部案内を見る</span><span class="arrow">→</span></a>
+  {% endif %}
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>

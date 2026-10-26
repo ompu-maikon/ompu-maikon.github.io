@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<section class="page-hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="crumb"><a href="{{ '/' | relative_url }}">~</a>/<a href="{{ '/news/' | relative_url }}">news</a>/</p>
+    <p class="eyebrow"><time>{{ page.date | date: "%Y.%m.%d" }}</time>{% if page.category %} · {{ page.category }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+  </div>
+</section>
+
+<article class="wrap prose prose-article">
+  {{ content }}
+  <p class="back"><a class="text-link" href="{{ '/news/' | relative_url }}"><span class="arrow">←</span> お知らせ一覧へ</a></p>
+</article>
