@@ -25,12 +25,12 @@ nav:
     title: マイコン部について
     label: About
     url: /about/
-    desc: どんなクラブか、活動日や場所、これまでの実績を紹介します。
+    desc: どんなクラブか、活動日や場所を紹介します。
   - id: activities
     title: 活動内容
     label: Activities
     url: /activities/
-    desc: 勉強会や資格対策、作品づくりなど、普段の活動と1年間の流れ。
+    desc: 普段の活動、これまでの実績、部員が作ったWebツールなどの成果物。
   - id: news
     title: お知らせ
     label: News
