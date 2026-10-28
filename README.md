@@ -30,7 +30,7 @@ GitHub Pages（Jekyll）で公開しています。ファイルを編集してCo
 1. 写真を `assets/images` フォルダにアップロードします（例：`assets/images/top.jpg`）
 2. `index.md` の `hero_image:` の行を `hero_image: /assets/images/top.jpg` に書き換えます
 
-横長で、2000px程度の大きさの写真がおすすめです。顔が写っていない写真を使ってください。
+横長で、2000px程度の大きさの写真がおすすめです。
 
 ## お知らせを追加する
 
